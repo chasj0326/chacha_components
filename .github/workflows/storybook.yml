@@ -4,7 +4,8 @@ on:
     branches:
       - dev
       - main
-
+permissions:
+  pull-requests: write
 jobs:
   storybook:
     runs-on: ubuntu-latest
@@ -39,4 +40,5 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           message: '🎀 storybook: ${{ steps.chromatic.outputs.storybookUrl }}'
