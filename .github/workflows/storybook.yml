@@ -36,7 +36,10 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: comment PR
-        uses: thollander/actions-comment-pull-request@v1
+        uses: thollander/actions-comment-pull-request@v2
         with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          message: '##🎀 storybook: `${{ steps.chromatic.outputs.storybookUrl }}`'
+          message: <h3>$\bf{\large{\color{#ff528c}STORYBOOK}}$</h3>
+
+            <a target="_blank" href="${{ steps.chromatic.outputs.storybookUrl }}">${{ steps.chromatic.outputs.storybookUrl }}</a>
+          comment_tag: execution
+          reactions: heart, hooray, rocket

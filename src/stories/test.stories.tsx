@@ -14,8 +14,8 @@ export const Primary: Story = {
         border: 'none',
         backgroundColor: 'royalblue',
         color: 'white',
-        padding: '2px 4px',
-        borderRadius: '5px',
+        padding: '3px 6px',
+        borderRadius: '10px',
       }}>
       primary
     </button>
@@ -29,8 +29,8 @@ export const PrimaryLongName: Story = {
         border: 'none',
         backgroundColor: 'royalblue',
         color: 'white',
-        padding: '2px 4px',
-        borderRadius: '5px',
+        padding: '3px 6px',
+        borderRadius: '10px',
       }}>
       primary long name
     </button>
