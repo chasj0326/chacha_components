@@ -43,9 +43,8 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const storybookUrl = '${{ steps.chromatic.outputs.storybookUrl }}';
-            console.log(storybookUrl, process.env.STORYBOOK_URL, ${{ steps.chromatic.outputs.storybookUrl }});
-            const commentBody = `<h2 style="color: #ff528c">✨ storybook: <span style="color: #bf78ec">${{ steps.chromatic.outputs.storybookUrl }}</span></h2>`;
+            const storybookUrl = github.context.payload.steps.chromatic.outputs.storybookUrl;
+            const commentBody = `<h2 style="color: #ff528c">✨ storybook: <span style="color: #bf78ec">${storybookUrl}</span></h2>`;
             const { data: existingComments } = await github.rest.issues.listComments({
               owner: context.repo.owner,
               repo: context.repo.repo,
