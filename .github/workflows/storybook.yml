@@ -42,4 +42,4 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           message: |
             storybook : ${{ steps.chromatic.outputs.storybookUrl }} :wave:
-          reactions: eyes, rocket
+          reactions: eyes, rocket, heart
