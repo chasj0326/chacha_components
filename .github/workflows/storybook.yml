@@ -37,33 +37,9 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: comment PR
-        uses: actions/github-script@v7
-        env:
-          STORYBOOK_URL: ${{ steps.chromatic.outputs.storybookUrl }}
+        uses: thollander/actions-comment-pull-request@v2
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          script: |
-            const storybookUrl = github.context.payload.steps.chromatic.outputs.storybookUrl;
-            const commentBody = `<h2 style="color: #ff528c">✨ storybook: <span style="color: #bf78ec">${storybookUrl}</span></h2>`;
-            const { data: existingComments } = await github.rest.issues.listComments({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              issue_number: context.payload.pull_request.number,
-            });
-
-            // 기존 댓글이 존재하는 경우 첫 번째 댓글을 업데이트
-            if (existingComments.length > 0) {
-              await github.rest.issues.updateComment({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                comment_id: existingComments[0].id,
-                body: commentBody,
-              });
-            } else {  // 기존 댓글이 없는 경우 새로운 댓글 작성
-              await github.rest.issues.createComment({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                issue_number: context.payload.pull_request.number,
-                body: commentBody,
-              });
-            }
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          message: |
+            storybook : ${{ steps.chromatic.outputs.storybookUrl }} :wave:
+          reactions: eyes, rocket
