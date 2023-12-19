@@ -38,10 +38,8 @@ jobs:
       - name: comment PR
         uses: thollander/actions-comment-pull-request@v2
         with:
-          message:
-            '<h3>$\bf{\large{\color{#ff528c}🎀\ STORYBOOK}}$</h3>
+          message: <h3>$\bf{\large{\color{#ff528c}STORYBOOK}}$</h3>
 
-            ${{ steps.chromatic.outputs.storybookUrl }}'
+            <a href="${{ steps.chromatic.outputs.storybookUrl }}">${{ steps.chromatic.outputs.storybookUrl }}</a>
           comment_tag: execution
           reactions: eyes, wave, heart
-          mode: recreate
