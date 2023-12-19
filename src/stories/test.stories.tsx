@@ -8,9 +8,27 @@ export default meta;
 type Story = StoryObj;
 
 export const Primary: Story = {
-  render: () => <button>primary</button>,
+  render: () => (
+    <button
+      style={{
+        border: 'none',
+        backgroundColor: 'royalblue',
+        color: 'white',
+      }}>
+      primary
+    </button>
+  ),
 };
 
 export const PrimaryLongName: Story = {
-  render: () => <button>primary long name</button>,
+  render: () => (
+    <button
+      style={{
+        border: 'none',
+        backgroundColor: 'royalblue',
+        color: 'white',
+      }}>
+      primary long name
+    </button>
+  ),
 };
