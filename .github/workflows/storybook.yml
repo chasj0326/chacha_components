@@ -40,6 +40,6 @@ jobs:
         with:
           message: <h3>$\bf{\large{\color{#ff528c}STORYBOOK}}$</h3>
 
-            <a href="${{ steps.chromatic.outputs.storybookUrl }}">${{ steps.chromatic.outputs.storybookUrl }}</a>
+            <a target="_blank" href="${{ steps.chromatic.outputs.storybookUrl }}">${{ steps.chromatic.outputs.storybookUrl }}</a>
           comment_tag: execution
-          reactions: eyes, wave, heart
+          reactions: eyes, hello, heart
