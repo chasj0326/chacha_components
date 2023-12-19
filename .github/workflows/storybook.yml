@@ -21,7 +21,7 @@ jobs:
         id: cache
         uses: actions/cache@v3
         with:
-          path: '**/node_modules, **/src'
+          path: '**/node_modules'
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}-storybook
 
       - name: dependency install
@@ -29,7 +29,6 @@ jobs:
         run: npm ci
 
       - name: publish to chromatic
-        if: steps.cache.outputs.cache-hit != 'true'
         id: chromatic
         uses: chromaui/action@v1
         with:
@@ -37,10 +36,8 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: comment PR
-        if: steps.cache.outputs.cache-hit != 'true'
         uses: thollander/actions-comment-pull-request@v2
         with:
-          message: |
-            _(execution **${{ github.run_id }}** / attempt **${{ github.run_attempt }}**)_
-            storybook : ${{ steps.chromatic.outputs.storybookUrl }}
-          comment_tag: executio
+          message: '💝storybook: ${{ steps.chromatic.outputs.storybookUrl }}'
+          comment_tag: execution
+          reactions: eyes, wave, heart
