@@ -41,7 +41,7 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const commentBody = '🎀 storybook: ' + process.env.STORYBOOK_URL;
+            const commentBody = '> <h2>🎀 storybook: ${{ steps.chromatic.outputs.storybookUrl }}</h2>';
             const { data: existingComments } = await github.rest.issues.listComments({
               owner: context.repo.owner,
               repo: context.repo.repo,
@@ -64,5 +64,3 @@ jobs:
                 body: commentBody,
               });
             }
-        env:
-          STORYBOOK_URL: ${{ steps.chromatic.outputs.storybookUrl }}
