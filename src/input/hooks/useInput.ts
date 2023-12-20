@@ -9,14 +9,15 @@ interface InputOptions {
 const useInput = (
   option?: boolean | string | number | InputOptions
 ) => {
-  const isOptionObj = typeof option === 'object';
-  const initial = isOptionObj ? option.initial : option;
-  const onInput = isOptionObj ? option.onInput : undefined;
-  const type = isOptionObj ? option.type ?? 'text' : 'text';
+  const inputOption =
+    typeof option === 'object'
+      ? option
+      : {
+          initial: option,
+        };
+  const { initial = '', type = 'text', onInput } = inputOption;
 
-  const [value, setValue] = useState(
-    initial ?? (type === 'checkbox' ? false : '')
-  );
+  const [value, setValue] = useState(initial);
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const inputValue =
@@ -32,12 +33,7 @@ const useInput = (
     onChange,
   });
 
-  return {
-    value: String(value),
-    checked: Boolean(value),
-    onChange,
-    getInputProps,
-  };
+  return { value, getInputProps };
 };
 
 export default useInput;

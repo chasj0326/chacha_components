@@ -7,12 +7,16 @@ const App = () => {
     usePwInput();
 
   const { value: range, getInputProps: getRangeInputProps } =
-    useInput({ type: 'range', initial: 0 });
+    useInput({
+      type: 'range',
+      onInput: (range) => console.log(range),
+    });
 
-  const { checked, getInputProps: getCheckedInputProps } = useInput({
-    type: 'checkbox',
-    onInput: (checked) => console.log(checked),
-  });
+  const { value: checked, getInputProps: getCheckedInputProps } =
+    useInput({
+      type: 'checkbox',
+      onInput: (checked) => console.log(checked),
+    });
 
   return (
     <>
