@@ -1,8 +1,15 @@
 import { useEffect, useRef, useState } from 'react';
+import { TabOptions } from '../types/tabOptions';
 
-const useTabRef = () => {
+const useTabRef = (option?: number | TabOptions) => {
+  const tabOption =
+    typeof option === 'object'
+      ? option
+      : { initial: option };
+  const { initial = 0, onChange } = tabOption;
+
   const tabListRef = useRef<HTMLDivElement>(null);
-  const [select, setSelect] = useState(0);
+  const [select, setSelect] = useState(initial);
 
   const controlTabList = (
     callback: (tabList: HTMLDivElement) => void
@@ -16,6 +23,7 @@ const useTabRef = () => {
   useEffect(() => {
     const handleClick = (index: number) => {
       setSelect(index);
+      onChange && onChange(index);
     };
 
     controlTabList(tabList => {

@@ -1,12 +1,25 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
+import { TabOptions } from '../types/tabOptions';
 
-const useTabProps = () => {
-  const [select, setSelect] = useState(0);
+const useTabProps = (option?: number | TabOptions) => {
+  const tabOption =
+    typeof option === 'object'
+      ? option
+      : { initial: option };
+  const { initial = 0, onChange } = tabOption;
 
-  const getTabItemProps = (index: number) => ({
-    onClick: () => setSelect(index),
-    'aria-selected': select === index,
-  });
+  const [select, setSelect] = useState(initial);
+
+  const getTabItemProps = useCallback(
+    (index: number) => ({
+      onClick: () => {
+        setSelect(index);
+        onChange && onChange(index);
+      },
+      'aria-selected': select === index,
+    }),
+    [onChange, select]
+  );
 
   return {
     getTabItemProps,

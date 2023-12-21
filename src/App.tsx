@@ -1,9 +1,10 @@
 import { useTabProps, useTabRef } from './features/Tab';
+import { Tab } from './features/Tab';
 
 const App = () => {
   const { select: firstSelect, getTabItemProps } =
     useTabProps();
-  const { select: secondSelect, tabListRef } = useTabRef();
+  const { select: secondSelect, tabListRef } = useTabRef(2);
   return (
     <>
       <div>
@@ -52,6 +53,28 @@ const App = () => {
           }
         </div>
       </div>
+      <Tab.Box
+        onChange={index => console.log(index)}
+        initial={2}>
+        <h1>Tab Component</h1>
+        <Tab.Screens>
+          <Tab.Screen>thumbnail1</Tab.Screen>
+          <Tab.Screen>thumbnail2</Tab.Screen>
+          <Tab.Screen>thumbnail3</Tab.Screen>
+        </Tab.Screens>
+        <hr />
+        <Tab.List style={{ display: 'flex' }}>
+          <Tab>tab1</Tab>
+          <Tab>tab2</Tab>
+          <Tab>tab3</Tab>
+        </Tab.List>
+        <hr />
+        <Tab.Screens>
+          <Tab.Screen>screen1</Tab.Screen>
+          <Tab.Screen>screen2</Tab.Screen>
+          <Tab.Screen>screen3</Tab.Screen>
+        </Tab.Screens>
+      </Tab.Box>
     </>
   );
 };
