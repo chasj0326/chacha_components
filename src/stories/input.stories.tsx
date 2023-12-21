@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import type { Meta, StoryFn } from '@storybook/react';
-import { InputBox, useInput, usePwInput } from '../input';
+import { InputBox, useInput, usePwInput } from '../features/Input';
 
 const meta: Meta = {
   title: 'Chacha/Input',
