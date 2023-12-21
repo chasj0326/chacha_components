@@ -1,14 +1,12 @@
 import React, { useState } from 'react';
 
 interface InputOptions {
-  initial?: boolean | string | number;
-  onInput?: (value: boolean | string | number) => void;
+  initial?: string | number;
+  onInput?: (value: string) => void;
   type?: React.HTMLInputTypeAttribute;
 }
 
-const useInput = (
-  option?: boolean | string | number | InputOptions
-) => {
+const useInput = (option?: string | number | InputOptions) => {
   const inputOption =
     typeof option === 'object'
       ? option
@@ -20,16 +18,13 @@ const useInput = (
   const [value, setValue] = useState(initial);
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const inputValue =
-      type === 'checkbox' ? e.target.checked : e.target.value;
-    setValue(inputValue);
-    onInput && onInput(inputValue);
+    setValue(e.target.value);
+    onInput && onInput(e.target.value);
   };
 
   const getInputProps = () => ({
     type,
-    value: String(value),
-    checked: Boolean(value),
+    value,
     onChange,
   });
 

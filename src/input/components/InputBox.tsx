@@ -6,10 +6,10 @@ import Label from './Label';
 
 interface InputBoxProps {
   id?: string;
-  initial?: string | number | boolean;
+  initial?: string | number;
   type?: HTMLInputTypeAttribute;
   children?: React.ReactNode;
-  onInput?: (value: string | number | boolean) => void;
+  onInput?: (value: string) => void;
 }
 
 const InputBox = ({

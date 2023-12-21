@@ -59,8 +59,8 @@ export const Option: StoryFn = () => {
     type: 'range',
     initial: 0,
   });
-  const { value: checked, getInputProps: getCheckProps } = useInput({
-    type: 'checkbox',
+  const { value: date, getInputProps: getDateProps } = useInput({
+    type: 'date',
   });
   return (
     <>
@@ -71,10 +71,9 @@ export const Option: StoryFn = () => {
       </div>
       <hr />
       <div>
-        <h3>Check Input Box</h3>
-        <label>is Good?</label>
-        <input {...getCheckProps()} />
-        <div>value: {checked ? 'Good!' : 'Soso'}</div>
+        <h3>Date Input Box</h3>
+        <input {...getDateProps()} />
+        <div>value: {date}</div>
       </div>
     </>
   );
@@ -109,7 +108,7 @@ export const Component: StoryFn = () => {
       <InputBox
         type='color'
         onInput={(value) => {
-          typeof value === 'string' && setColor(value);
+          setColor(value);
         }}>
         <h3>InputBox : Color</h3>
         <InputBox.Label style={{ color }}>COLOR </InputBox.Label>
