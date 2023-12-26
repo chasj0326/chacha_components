@@ -1,0 +1,16 @@
+{
+  "React Custom Hook": {
+    "prefix": ["ch", "hook"],
+    "body": [
+      "import React, { useState } from 'react';",
+      "",
+      "const $1 = () => {",
+      "\treturn {};",
+      "};",
+      "",
+      "export default $1;",
+      ""
+    ],
+    "description": "리액트 커스텀훅 작성"
+  }
+}

@@ -6,7 +6,7 @@
       "",
       "interface ${1:${TM_FILENAME_BASE}}Props {}",
       "",
-      "const $1 = {{}: $1Props} => {",
+      "const $1 = ({}: $1Props) => {",
       "\treturn <div></div>;",
       "};",
       "",
