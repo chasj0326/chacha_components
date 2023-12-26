@@ -1,9 +1,8 @@
-import { useTab } from './features/Tab';
-import { Tab } from './features/Tab';
+import { useTab, Tab } from './features/Tab';
 
 const App = () => {
   const { getTabItemProps, getTabScreen } = useTab();
-  const { tabListRef, select } = useTab(2);
+
   return (
     <>
       <div>
@@ -24,30 +23,6 @@ const App = () => {
             <div>Tab Screen 3</div>,
             <div>Tab Screen 4</div>,
           ])}
-        </div>
-      </div>
-      <div>
-        <h2>Tab2</h2>
-        <div
-          ref={tabListRef}
-          style={{ display: 'flex', gap: '10px' }}>
-          <div>Tab0</div>
-          <div>Tab1</div>
-          <div>Tab2</div>
-          <div>Tab3</div>
-          <div>Tab4</div>
-        </div>
-        <hr />
-        <div>
-          {
-            [
-              <div>Tab Screen 0</div>,
-              <div>Tab Screen 1</div>,
-              <div>Tab Screen 2</div>,
-              <div>Tab Screen 3</div>,
-              <div>Tab Screen 4</div>,
-            ][select]
-          }
         </div>
       </div>
       <Tab.Box
