@@ -1,11 +1,14 @@
-import { useEffect, useRef, useState } from 'react';
+import React, {
+  useEffect,
+  useRef,
+  useState,
+  useCallback,
+} from 'react';
 import { TabOptions } from '../types/tabOptions';
 
-const useTabRef = (option?: number | TabOptions) => {
+const useTab = (option?: number | TabOptions) => {
   const tabOption =
-    typeof option === 'object'
-      ? option
-      : { initial: option };
+    typeof option === 'object' ? option : { initial: option };
   const { initial = 0, onChange } = tabOption;
 
   const tabListRef = useRef<HTMLDivElement>(null);
@@ -26,7 +29,7 @@ const useTabRef = (option?: number | TabOptions) => {
       onChange && onChange(index);
     };
 
-    controlTabList(tabList => {
+    controlTabList((tabList) => {
       const tabListItems = tabList.children;
 
       for (let i = 0; i < tabListItems.length; i++) {
@@ -43,10 +46,10 @@ const useTabRef = (option?: number | TabOptions) => {
         }
       };
     });
-  }, []);
+  }, [onChange]);
 
   useEffect(() => {
-    controlTabList(tabList => {
+    controlTabList((tabList) => {
       const tabListItems = tabList.children;
 
       for (let i = 0; i < tabListItems.length; i++) {
@@ -55,10 +58,30 @@ const useTabRef = (option?: number | TabOptions) => {
     });
   }, [select]);
 
+  const getTabItemProps = useCallback(
+    (index: number) => ({
+      onClick: () => {
+        setSelect(index);
+        onChange && onChange(index);
+      },
+      'aria-selected': select === index,
+    }),
+    [onChange, select]
+  );
+
+  const getTabScreen = useCallback(
+    (screens: React.ReactNode[]) => {
+      return screens[select];
+    },
+    [select]
+  );
+
   return {
     tabListRef,
     select,
+    getTabItemProps,
+    getTabScreen,
   };
 };
 
-export default useTabRef;
+export default useTab;
