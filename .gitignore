@@ -17,6 +17,7 @@ dist-ssr
 !.vscode/extensions.json
 !.vscode/component.code-snippets
 !.vscode/hook.code-snippets
+!.vscode/storybook.code-snippets
 .idea
 .DS_Store
 *.suo
