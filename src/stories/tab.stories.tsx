@@ -13,7 +13,7 @@ export const Default: StoryFn = () => {
   const { getTabItemProps, getTabScreen, select } = useTab();
   return (
     <>
-      <h3>Selected Tab Index: {select}</h3>
+      <b>Selected Tab Index: {select}</b>
       <div style={{ display: 'flex', gap: '10px' }}>
         <div {...getTabItemProps(0)}>Tab0</div>
         <div {...getTabItemProps(1)}>Tab1</div>
@@ -40,6 +40,9 @@ Default.parameters = {
   },
 };
 
+const tabItemStyle =
+  'w-12 flex justify-center aria-selected:bg-gray-200 cursor-pointer';
+
 export const Option: StoryFn = () => {
   const [count, setCount] = useState(0);
   const { getTabItemProps, getTabScreen } = useTab({
@@ -48,16 +51,18 @@ export const Option: StoryFn = () => {
       setCount((prev) => prev + 1);
     },
   });
+
   return (
     <>
       <b>Tab changed {count} time</b>
-      <hr />
       <div style={{ display: 'flex', gap: '10px' }}>
-        <div {...getTabItemProps(0)}>Tab0</div>
-        <div {...getTabItemProps(1)}>Tab1</div>
-        <div {...getTabItemProps(2)}>Tab2</div>
-        <div {...getTabItemProps(3)}>Tab3</div>
-        <div {...getTabItemProps(4)}>Tab4</div>
+        {Array.from({ length: 5 }).map((_, i) => (
+          <div
+            className={tabItemStyle}
+            {...getTabItemProps(i)}>
+            Tab{i}
+          </div>
+        ))}
       </div>
       <hr />
       {getTabScreen([
@@ -83,7 +88,6 @@ export const Component: StoryFn = () => {
     <Tab.Box
       onChange={(index) => console.log(index)}
       initial={2}>
-      <h1>Tab Component</h1>
       <Tab.Screens>
         <Tab.Screen>thumbnail1</Tab.Screen>
         <Tab.Screen>thumbnail2</Tab.Screen>
@@ -91,9 +95,9 @@ export const Component: StoryFn = () => {
       </Tab.Screens>
       <hr />
       <Tab.List style={{ display: 'flex', gap: '10px' }}>
-        <Tab>tab1</Tab>
-        <Tab>tab2</Tab>
-        <Tab>tab3</Tab>
+        <Tab className={tabItemStyle}>tab1</Tab>
+        <Tab className={tabItemStyle}>tab2</Tab>
+        <Tab className={tabItemStyle}>tab3</Tab>
       </Tab.List>
       <hr />
       <Tab.Screens>
