@@ -14,7 +14,7 @@ export const Default: StoryFn = () => {
   return (
     <>
       <b>Selected Tab Index: {select}</b>
-      <div style={{ display: 'flex', gap: '10px' }}>
+      <div className='flex gap-5'>
         <div {...getTabItemProps(0)}>Tab0</div>
         <div {...getTabItemProps(1)}>Tab1</div>
         <div {...getTabItemProps(2)}>Tab2</div>
@@ -55,7 +55,7 @@ export const Option: StoryFn = () => {
   return (
     <>
       <b>Tab changed {count} time</b>
-      <div style={{ display: 'flex', gap: '10px' }}>
+      <div className='flex gap-5'>
         {Array.from({ length: 5 }).map((_, i) => (
           <div
             className={tabItemStyle}
@@ -94,7 +94,7 @@ export const Component: StoryFn = () => {
         <Tab.Screen>thumbnail3</Tab.Screen>
       </Tab.Screens>
       <hr />
-      <Tab.List style={{ display: 'flex', gap: '10px' }}>
+      <Tab.List className='flex gap-5'>
         <Tab className={tabItemStyle}>tab1</Tab>
         <Tab className={tabItemStyle}>tab2</Tab>
         <Tab className={tabItemStyle}>tab3</Tab>
