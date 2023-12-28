@@ -1,0 +1,28 @@
+{
+  "Storybook": {
+    "prefix": ["sb", "story"],
+    "body": [
+      "import type { Meta, StoryFn } from '@storybook/react';",
+      "",
+      "const meta: Meta = {",
+      "\ttitle: 'Chacha/$1',",
+      "\ttags: ['autodocs']",
+      "};",
+      "",
+      "export default meta;",
+      "",
+      "export const Default: StoryFn = () => {",
+      "\treturn ();",
+      "};",
+      "Default.parameters = {",
+      "\tdocs: {",
+      "\t\tdescription: {",
+      "\t\t\tstory: '',",
+      "\t\t},",
+      "\t},",
+      "};",
+      ""
+    ],
+    "description": "리액트 스토리북 작성"
+  }
+}
